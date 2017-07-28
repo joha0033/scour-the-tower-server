@@ -51,4 +51,5 @@ module.exports = {
   getResidentsInTower(id) {
   return knex('tower_residents').where('tower_info_id', id)
 
+  }
 }
