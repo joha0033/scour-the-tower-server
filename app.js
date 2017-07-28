@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors')
 var towers = require('./api/towers')
 var residents = require('./api/residents')
+const auth = require('./auth/index')
 var app = express();
 
 

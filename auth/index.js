@@ -29,7 +29,7 @@ router.post('/signup', (req, res, next) => {
   console.log(req.body);
   if (validateUser(req.body)) {
     Resident
-      .getUserByEmail(req.body.email)
+      .getResidentByEmail(req.body.email)
       .then(resident => {
         if (!resident) {
           console.log('test/if (!resident) line 35/test');
@@ -37,16 +37,20 @@ router.post('/signup', (req, res, next) => {
             .then((hash) => {
               console.log(hash);
               const resident = {
-                name: req.body.name,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                sex: req.body.sex,
+                imageURL: req.body.imageURL,
                 email: req.body.email,
-                password: hash
+                password: hash,
+                tower_id: req.body.tower_id
               }
               Resident
                 .addResident(resident)
                 .then(res.json(resident));
                 })
         } else {
-          console.log('test/ielseline 49/test');
+          console.log('test/elseline 49/test');
           next(new Error('Invalid user'))
         }
       })
@@ -57,17 +61,18 @@ router.post('/login', (req, res, next) => {
   console.log(req.body);
   if (validateUser(req.body)) {
     Resident
-      .getUserByEmail(req.body.email)
+      .getResidentByEmail(req.body.email)
       .then(resident => {
-        console.log('resident', resident);
+        console.log(resident);
         if (resident) {
           console.log('if');
-          bcrypt.compare(req.body.password, residents.password)
+          bcrypt.compare(req.body.password, resident.password)
             .then((resident) => {
               res.json(resident)
             })
           } else {
-            next( new Error('Invalid user'))
+            console.log('anything?');
+            next(new Error('invalid resident cred yo...'))
           }
         })
       }

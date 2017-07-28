@@ -22,6 +22,15 @@ router.post('/new',(req, res, next)=> {
   })
 })
 
+router.put('/:id', function(req,res,next){
+  console.log(req.body);
+  queries.put(req.params.id).then(()=>{
+    res.json({
+      message: 'can you spare some change?'
+    })
+  })
+})
+
 router.delete('/:id', function(req,res,next){
   console.log(req.body);
   queries.delete(req.params.id).then(()=>{
