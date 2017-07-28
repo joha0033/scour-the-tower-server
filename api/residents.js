@@ -31,6 +31,12 @@ router.put('/:id', function(req,res,next){
   })
 })
 
+///working?
+router.get('/:id/residents', (req, res, next) => {
+ queries.getResidentsInTower(req.params.id)
+ .then(residents =>{
+   res.json(residents)
+
 router.delete('/:id', function(req,res,next){
   console.log(req.body);
   queries.delete(req.params.id).then(()=>{

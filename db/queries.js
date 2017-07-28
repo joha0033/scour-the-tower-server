@@ -39,10 +39,16 @@ module.exports = {
   delete(id){
     return knex('tower_info').where('id', id).del()
   },
-  //////////////
-  ////AUTH in/on
-  //////////////
+  ///////////////
+  ////AUTH in/on/
+  ///////////////
   getResidentByEmail(email) {
     return knex('tower_residents').where('email', email).first();
   }
+  /////////////////////////
+  ////RESIDENTS IN TOWER///
+  /////////////////////////
+  getResidentsInTower(id) {
+  return knex('tower_residents').where('tower_info_id', id)
+  
 }
